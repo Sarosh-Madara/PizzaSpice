@@ -5,15 +5,18 @@
  */
 package pizza.spice;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sarosh Madara
  */
-public class UI extends javax.swing.JFrame {
+public class UI extends javax.swing.JFrame implements ChefListener{
 
-    /**
-     * Creates new form UI
-     */
+    private Pizza selectedPizza = null;
+    private ChefListener listener;
+    private Chef chef;
+    
     public UI() {
         initComponents();
     }
@@ -32,58 +35,236 @@ public class UI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        p1jLabel = new javax.swing.JLabel();
+        p2jLabel = new javax.swing.JLabel();
+        p3jLabel = new javax.swing.JLabel();
+        p4jLabel = new javax.swing.JLabel();
+        p6jLabel = new javax.swing.JLabel();
+        orderP1Clicked = new javax.swing.JButton();
+        p2Order = new javax.swing.JButton();
+        p3Order = new javax.swing.JButton();
+        p4Order = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        p5jLabel = new javax.swing.JLabel();
+        p5jLabel1 = new javax.swing.JLabel();
+        p5jLabel2 = new javax.swing.JLabel();
+        p5jLabel3 = new javax.swing.JLabel();
+        p7jLabel = new javax.swing.JLabel();
+        p5jLabel4 = new javax.swing.JLabel();
+        p8jLabel = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(658, 380));
+        getContentPane().setLayout(null);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pizza/spice/Pizza+Margarita-100-100.jpg"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(70, 106, 100, 100);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pizza/spice/marguerita.jpg"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(208, 106, 100, 100);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pizza/spice/prince pizza.jpg"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(343, 106, 100, 100);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pizza/spice/Spice.jpg"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(480, 106, 100, 100);
 
         jLabel5.setBackground(new java.awt.Color(102, 102, 255));
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(153, 0, 0));
         jLabel5.setText("Pizza Spice");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(284, 11, 120, 43);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jLabel1)
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(84, Short.MAX_VALUE))
+        p1jLabel.setForeground(new java.awt.Color(255, 255, 255));
+        p1jLabel.setText("Margarita and Cheese");
+        p1jLabel.setToolTipText("");
+        getContentPane().add(p1jLabel);
+        p1jLabel.setBounds(70, 237, 106, 14);
+
+        p2jLabel.setForeground(new java.awt.Color(255, 255, 255));
+        p2jLabel.setText("Veggie Meat Pizza");
+        getContentPane().add(p2jLabel);
+        p2jLabel.setBounds(208, 237, 100, 14);
+
+        p3jLabel.setForeground(new java.awt.Color(255, 255, 255));
+        p3jLabel.setText("Marguerita Pizza");
+        getContentPane().add(p3jLabel);
+        p3jLabel.setBounds(343, 237, 100, 14);
+
+        p4jLabel.setForeground(new java.awt.Color(255, 255, 255));
+        p4jLabel.setText("Chicken Spicy");
+        getContentPane().add(p4jLabel);
+        p4jLabel.setBounds(480, 237, 100, 14);
+
+        p6jLabel.setForeground(new java.awt.Color(255, 255, 255));
+        p6jLabel.setText("999");
+        getContentPane().add(p6jLabel);
+        p6jLabel.setBounds(278, 262, 30, 14);
+
+        orderP1Clicked.setText("Order");
+        orderP1Clicked.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderP1ClickedActionPerformed(evt);
+            }
+        });
+        getContentPane().add(orderP1Clicked);
+        orderP1Clicked.setBounds(70, 294, 106, 23);
+
+        p2Order.setText("Order");
+        p2Order.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                p2OrderActionPerformed(evt);
+            }
+        });
+        getContentPane().add(p2Order);
+        p2Order.setBounds(208, 294, 100, 23);
+
+        p3Order.setText("Order");
+        p3Order.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                p3OrderActionPerformed(evt);
+            }
+        });
+        getContentPane().add(p3Order);
+        p3Order.setBounds(343, 294, 100, 23);
+
+        p4Order.setText("Order");
+        p4Order.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                p4OrderActionPerformed(evt);
+            }
+        });
+        getContentPane().add(p4Order);
+        p4Order.setBounds(480, 294, 100, 23);
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        p5jLabel.setForeground(new java.awt.Color(255, 255, 255));
+        p5jLabel.setText("800");
+
+        p5jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        p5jLabel1.setText("Price:");
+
+        p5jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        p5jLabel2.setText("Price:");
+
+        p5jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        p5jLabel3.setText("Price:");
+
+        p7jLabel.setForeground(new java.awt.Color(255, 255, 255));
+        p7jLabel.setText("1200");
+
+        p5jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        p5jLabel4.setText("Price:");
+
+        p8jLabel.setForeground(new java.awt.Color(255, 255, 255));
+        p8jLabel.setText("700");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(p5jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(p5jLabel)
+                .addGap(43, 43, 43)
+                .addComponent(p5jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107)
+                .addComponent(p5jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(p7jLabel)
+                .addGap(34, 34, 34)
+                .addComponent(p5jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(p8jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addContainerGap(84, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(262, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(p5jLabel)
+                    .addComponent(p5jLabel1)
+                    .addComponent(p5jLabel3)
+                    .addComponent(p5jLabel2)
+                    .addComponent(p7jLabel)
+                    .addComponent(p5jLabel4)
+                    .addComponent(p8jLabel))
+                .addGap(64, 64, 64))
         );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 660, 340);
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 330, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 660, 330);
+
+        jLabel14.setText("Price: 700");
+        getContentPane().add(jLabel14);
+        jLabel14.setBounds(480, 262, 100, 14);
+
+        jLabel15.setText("Price: 1200");
+        getContentPane().add(jLabel15);
+        jLabel15.setBounds(343, 262, 100, 14);
+
+        jLabel16.setText("Price: 999");
+        getContentPane().add(jLabel16);
+        jLabel16.setBounds(208, 262, 100, 14);
+
+        jLabel17.setText("Chicken Spicy");
+        getContentPane().add(jLabel17);
+        jLabel17.setBounds(480, 237, 100, 14);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void orderP1ClickedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderP1ClickedActionPerformed
+         selectedPizza = new Pizza(p1jLabel.getText(),Integer.parseInt(p5jLabel.getText()),7);
+         cookPizza(selectedPizza);
+    }//GEN-LAST:event_orderP1ClickedActionPerformed
+
+    private void p2OrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p2OrderActionPerformed
+        selectedPizza = new Pizza(p2jLabel.getText(),Integer.parseInt(p6jLabel.getText()),4);
+        cookPizza(selectedPizza);
+    }//GEN-LAST:event_p2OrderActionPerformed
+
+    private void p3OrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p3OrderActionPerformed
+        selectedPizza = new Pizza(p3jLabel.getText(),Integer.parseInt(p7jLabel.getText()),10);
+        cookPizza(selectedPizza);
+    }//GEN-LAST:event_p3OrderActionPerformed
+
+    private void p4OrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p4OrderActionPerformed
+        selectedPizza = new Pizza(p4jLabel.getText(),Integer.parseInt(p8jLabel.getText()),5);
+        cookPizza(selectedPizza);
+    }//GEN-LAST:event_p4OrderActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -121,9 +302,41 @@ public class UI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton orderP1Clicked;
+    private javax.swing.JLabel p1jLabel;
+    private javax.swing.JButton p2Order;
+    private javax.swing.JLabel p2jLabel;
+    private javax.swing.JButton p3Order;
+    private javax.swing.JLabel p3jLabel;
+    private javax.swing.JButton p4Order;
+    private javax.swing.JLabel p4jLabel;
+    private javax.swing.JLabel p5jLabel;
+    private javax.swing.JLabel p5jLabel1;
+    private javax.swing.JLabel p5jLabel2;
+    private javax.swing.JLabel p5jLabel3;
+    private javax.swing.JLabel p5jLabel4;
+    private javax.swing.JLabel p6jLabel;
+    private javax.swing.JLabel p7jLabel;
+    private javax.swing.JLabel p8jLabel;
     // End of variables declaration//GEN-END:variables
+
+    private void cookPizza(Pizza selectedPizza) {
+        chef = new Chef(selectedPizza, this);
+        chef.start();
+    }
+
+    @Override
+    public void cookingPizza(Pizza pizza) {
+        JOptionPane.showMessageDialog(null, pizza.getName()+" Has been cooked.", "Congratulations", JOptionPane.INFORMATION_MESSAGE);
+    }
 }
